@@ -1,0 +1,25 @@
+#coding:utf8
+SERVER_PORT = 7228
+THREADS_NUM = 3
+ssdb_host = "10.13.183.202"
+ssdb_port = "8800"
+ssdb_save_participle_result_hashmap = "baidu_participle_result_test"
+
+redis_host = "localhost"
+redis_port = 6379
+redis_db = 14
+redis_task_list_name = "wait_download_video_list_test"
+redis_save_video_result = "video_to_sentence_result_test"
+
+get_video_api = "http://10.13.43.178:5555"
+baidu_api_error_try_times = 10
+
+space_sep = " "
+sep = "#\t@;`"
+sep_replace = ("\s?").join([_sep for _sep in sep])
+no_chinese_word_re = u'[^\d\w\u4E00-\u9FA5\u9FA6-\u9FCB\s+\.\!\/:\?《》\-“”_,\$\%\*\(\+\"\'\]\|\[\]\—！，。？、~@#￥%……\&（）【】：<>]'
+some_emoji_code = u"\u141b|\u1597|\u2740|\u30fb|\u1598|\u2665|\u2611"
+
+dont_split_pos = set(["nw", "n", "ns"])
+dont_split_ne = set(["per", "loc"])
+VIDEO_TO_SENTENCE_THREADS = 10

@@ -1,0 +1,34 @@
+[loggers]
+keys=root,sentiment
+
+[logger_root]
+level=DEBUG
+handlers=console
+
+[logger_sentiment]
+handlers=sentiment,console
+qualname=sentiment
+propagate=0
+
+[handlers]
+keys=console,sentiment
+
+[handler_console]
+class=StreamHandler
+level=DEBUG
+formatter=qformat
+args=(sys.stderr,)
+
+[handler_sentiment]
+class=handlers.RotatingFileHandler
+level=DEBUG
+formatter=qformat
+args=(os.path.join("./log", 'sentiment.txt'), 'a', 1*100*1024*1024, 5)
+
+[formatters]
+keys=qformat
+
+[formatter_qformat]
+format=%(asctime)s %(filename)s %(lineno)d %(levelname)s   %(message)s
+datefmt=%Y%m%d %H:%M:%S
+
