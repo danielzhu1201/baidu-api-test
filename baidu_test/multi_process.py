@@ -13,9 +13,6 @@ from multiprocessing import Pool
 pat_re = '([^\u4E00-\u9FA5a-zA-Z0-9]+)'
 client = get_baidu_nlp_client(0)
 
-global error_times
-error_times = 0
-
 def func(sentence):
     try:
         json_result = client.lexer(sentence)
@@ -25,10 +22,8 @@ def func(sentence):
         pass
     else:
         if json_result.get(u'error_msg',''):
-            global error_times
-            error_times = error_times + 1
-            print error_times
-    time.sleep(0.525)
+            print ','
+    time.sleep(0.1)
 
 
 if __name__ == '__main__':
@@ -38,9 +33,7 @@ if __name__ == '__main__':
         #sentences.insert(i+1, re.sub(pat_re, '', data['video_title'][i]))
         sentences.insert(i+1, data['video_title'][i])
     
-    for i in range(0,1):
-        global error_times
-        error_times = 0
+    for i in range(2,3):
         print i
         print accounts[i]
         client = get_baidu_nlp_client(i)
@@ -52,7 +45,6 @@ if __name__ == '__main__':
         t2 = time.time()
         print '\n\n\n\nclient id = ' + accounts[i]["APP_ID"]
         print (t2-t1)
-        print error_times
         print '\n\n\n\n'
 
 # cd desktop\baidu_test  python multi_process.py
